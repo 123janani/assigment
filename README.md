@@ -11,4 +11,8 @@
 * Enter any package name using postman
 
     http://localhost:3000/{{pkgName}}
+    
+* Test run
+
+      $ npm test
   
