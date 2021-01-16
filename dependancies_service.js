@@ -1,10 +1,9 @@
 const request = require('request');
 const dependancies_service = require("./dependancies_service");
-
+var finalArr = [];
 
 exports.getAllDependancies = async function (name) {
     var dep;
-    var finalArr = [];
     let options = {
         'method': 'GET',
         'url': 'http://registry.npmjs.org/'+ name +'/latest',
@@ -15,7 +14,7 @@ exports.getAllDependancies = async function (name) {
     request(options, (error, response) => {
 
         try {
-            dep = JSON.parse(response.body) ? JSON.parse(response.body) : '';
+            dep = response ? JSON.parse(response.body) : '';
 
             //all dep. in user entered package
             var temp =[];
@@ -30,15 +29,15 @@ exports.getAllDependancies = async function (name) {
                     finalArr.push(name);
                 }
             }
-            return finalArr;
+            return
         } catch (error) {
             console.error(error);
         }
     });
 };
 
-exports.getAll = function (name,res) {
-    dependancies_service.getAllDependancies(name).then(result => {
-        res.send(result);
+exports.getAll = (name) =>{
+    dependancies_service.getAllDependancies(name).then(() => {
+        return finalArr;
     });
 };
