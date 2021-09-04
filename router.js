@@ -1,6 +1,9 @@
-const routes = require('express').Router();
-const controller = require('./dependancies_controller');
+const express = require("express");
 
-routes.get('/:pkgName', controller.getAll);
+const router = express.Router();
 
-module.exports = routes;
+const controller = require("./dependancies_controller");
+
+router.get("/:pkgName", controller.getAll);
+
+module.exports = router;
